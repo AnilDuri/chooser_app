@@ -1,3 +1,4 @@
+import 'package:chooser_ap/widgets/touch_indicator.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -5,13 +6,13 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (details) {
-        print(details.globalPosition);
-      },
-      onSecondaryTapDown: (details) {
-        print(details.globalPosition);
-      },
+    return TouchIndicator(
+      indicator: const Icon(
+        Icons.circle_outlined,
+        size: 150,
+        color: Colors.white,
+      ),
+      indicatorSize: 150,
       child: Scaffold(
         backgroundColor: Colors.amberAccent,
         body: Padding(
