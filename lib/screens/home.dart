@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
                 const Column(
                   children: [
                     Text(
-                      'Welcome To Chooser',
+                      'Chooser 2.0',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Random selector',
+                      'Your random selector.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white,
