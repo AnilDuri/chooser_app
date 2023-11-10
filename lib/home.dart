@@ -7,7 +7,10 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (details) {
-        print(details);
+        print(details.globalPosition);
+      },
+      onSecondaryTapDown: (details) {
+        print(details.globalPosition);
       },
       child: Scaffold(
         backgroundColor: Colors.amberAccent,
