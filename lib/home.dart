@@ -5,13 +5,13 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.amberAccent,
-      body: GestureDetector(
-        onTapDown: (details) {
-          print(details);
-        },
-        child: Padding(
+    return GestureDetector(
+      onTapDown: (details) {
+        print(details);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.amberAccent,
+        body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
           child: SafeArea(
             child: Column(
