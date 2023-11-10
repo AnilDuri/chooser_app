@@ -7,37 +7,53 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.amberAccent,
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                child: Text('data'),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: const Column(
                   children: [
-                    HomeButton(
-                      icon: Icons.help,
-                      label: 'Tutorial',
-                      onTap: () {},
+                    Text(
+                      'Welcome To Chooser',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold),
                     ),
-                    HomeButton(
-                      icon: Icons.brush,
-                      label: 'Color',
-                      onTap: () {},
+                    Text(
+                      'Random selector',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w300),
                     ),
-                    HomeButton(
-                      icon: Icons.settings,
-                      label: 'Settings',
-                      onTap: () {},
-                    )
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  HomeButton(
+                    icon: Icons.help,
+                    label: 'Tutorial',
+                    onTap: () {},
+                  ),
+                  HomeButton(
+                    icon: Icons.brush,
+                    label: 'Color',
+                    onTap: () {},
+                  ),
+                  HomeButton(
+                    icon: Icons.settings,
+                    label: 'Settings',
+                    onTap: () {},
+                  )
+                ],
               )
             ],
           ),
