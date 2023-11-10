@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Circle extends StatefulWidget {
   const Circle({
@@ -17,6 +18,7 @@ class _CircleState extends State<Circle> with SingleTickerProviderStateMixin {
     _controller = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this)
       ..forward();
+    HapticFeedback.heavyImpact();
     super.initState();
   }
 
