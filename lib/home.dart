@@ -1,3 +1,4 @@
+import 'package:chooser_ap/widgets/circle.dart';
 import 'package:chooser_ap/widgets/touch_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +8,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TouchIndicator(
-      indicator: const Icon(
-        Icons.circle_outlined,
-        size: 150,
-        color: Colors.white,
-      ),
+      indicator: const Circle(),
       indicatorSize: 150,
       child: Scaffold(
         backgroundColor: Colors.amberAccent,
