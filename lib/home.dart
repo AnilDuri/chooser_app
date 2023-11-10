@@ -14,6 +14,9 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
+                onTapDown: (details) {
+                  print(details);
+                },
                 child: const Column(
                   children: [
                     Text(
