@@ -7,17 +7,17 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.amberAccent,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTapDown: (details) {
-                  print(details);
-                },
-                child: const Column(
+      body: GestureDetector(
+        onTapDown: (details) {
+          print(details);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Column(
                   children: [
                     Text(
                       'Welcome To Chooser',
@@ -37,28 +37,28 @@ class Home extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  HomeButton(
-                    icon: Icons.help,
-                    label: 'Tutorial',
-                    onTap: () {},
-                  ),
-                  HomeButton(
-                    icon: Icons.brush,
-                    label: 'Color',
-                    onTap: () {},
-                  ),
-                  HomeButton(
-                    icon: Icons.settings,
-                    label: 'Settings',
-                    onTap: () {},
-                  )
-                ],
-              )
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    HomeButton(
+                      icon: Icons.help,
+                      label: 'Tutorial',
+                      onTap: () {},
+                    ),
+                    HomeButton(
+                      icon: Icons.brush,
+                      label: 'Color',
+                      onTap: () {},
+                    ),
+                    HomeButton(
+                      icon: Icons.settings,
+                      label: 'Settings',
+                      onTap: () {},
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
