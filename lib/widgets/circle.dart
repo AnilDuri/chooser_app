@@ -15,7 +15,7 @@ class _CircleState extends State<Circle> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this)
+        duration: const Duration(milliseconds: 300), vsync: this)
       ..forward();
     super.initState();
   }
