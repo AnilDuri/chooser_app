@@ -1,3 +1,5 @@
+import 'package:chooser_ap/screens/finger_tap_choice_screen.dart';
+import 'package:chooser_ap/screens/shaker_choice.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -69,7 +71,21 @@ class _HomeState extends State<Home> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (_choiceController == 'shaker') {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => const ShakerChoiceScreen(),
+                    ),
+                  );
+                } else {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (ctx) => const FingerTapChoiceScreen(),
+                    ),
+                  );
+                }
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,
                   minimumSize: const Size(150, 40)),
