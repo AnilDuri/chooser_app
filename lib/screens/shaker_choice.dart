@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shake/shake.dart';
 
 class ShakerChoiceScreen extends StatefulWidget {
   const ShakerChoiceScreen({super.key});
@@ -12,6 +16,51 @@ class ShakerChoiceScreen extends StatefulWidget {
 class _ShakerChoiceScreen extends State<ShakerChoiceScreen> {
   final _nameController = TextEditingController();
   final List<String> _names = [];
+  late ShakeDetector _detector;
+
+  @override
+  void initState() {
+    super.initState();
+    _detector = ShakeDetector.autoStart(
+      onPhoneShake: () {
+        print('Shaking');
+        randomlyRemoveName();
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(
+        //     content: Text('Shake!'),
+        //   ),
+        // );
+        // Do stuff on phone shake
+      },
+      minimumShakeCount: 2,
+      shakeSlopTimeMS: 1000,
+      shakeCountResetTime: 3000,
+      shakeThresholdGravity: 2.7,
+    );
+    // To close: detector.stopListening();
+    // ShakeDetector.waitForStart() waits for user to call detector.startListening();
+  }
+
+  void randomlyRemoveName() {
+    if (_names.length == 1) {
+      _detector.stopListening();
+      return;
+    }
+    var rand = Random();
+    int i = rand.nextInt(_names.length);
+
+//remove the random string
+    setState(() {
+      _names.removeAt(i);
+    });
+    HapticFeedback.heavyImpact();
+  }
+
+  @override
+  void dispose() {
+    _detector.stopListening();
+    super.dispose();
+  }
 
   void _savePerson() {
     final enteredName = _nameController.text;
@@ -49,7 +98,7 @@ class _ShakerChoiceScreen extends State<ShakerChoiceScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Add people to your list and start shaking to determe the starting order',
+                'Add people to your list and start shaking to see who remains',
                 textAlign: TextAlign.center,
               ),
               TextField(

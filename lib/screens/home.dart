@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var _choiceController = 'finger';
+  var _choiceController = 'shaker';
 
   @override
   Widget build(BuildContext context) {
@@ -73,13 +73,13 @@ class _HomeState extends State<Home> {
             ElevatedButton(
               onPressed: () {
                 if (_choiceController == 'shaker') {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (ctx) => const ShakerChoiceScreen(),
                     ),
                   );
                 } else {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (ctx) => const FingerTapChoiceScreen(),
                     ),
