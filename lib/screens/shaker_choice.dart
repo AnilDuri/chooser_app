@@ -18,7 +18,17 @@ class _ShakerChoiceScreen extends State<ShakerChoiceScreen> {
     if (enteredName.isEmpty) {
       return;
     }
-    if (_names.contains(enteredName)) {}
+    if (_names.contains(enteredName)) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 3),
+          content: Text('Name already exists'),
+        ),
+      );
+      return;
+    }
+
     setState(() {
       _names.add(_nameController.text);
     });
@@ -64,6 +74,13 @@ class _ShakerChoiceScreen extends State<ShakerChoiceScreen> {
                     itemCount: _names.length,
                     itemBuilder: (ctx, index) => ListTile(
                           title: Text(_names[index]),
+                          trailing: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _names.remove(_names[index]);
+                                });
+                              },
+                              icon: const Icon(Icons.remove_circle_outline)),
                         )),
               )
             ],
