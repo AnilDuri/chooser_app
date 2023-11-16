@@ -70,30 +70,45 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (_choiceController == 'shaker') {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (ctx) => const ShakerChoiceScreen(),
-                    ),
-                  );
-                } else {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (ctx) => const FingerTapChoiceScreen(),
-                    ),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                  minimumSize: const Size(150, 40)),
-              child: const Text(
-                'Continue',
-                style: TextStyle(fontSize: 18),
-              ),
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                HomeButton(
+                  icon: Icons.help,
+                  label: 'Tutorial',
+                  onTap: () {},
+                ),
+                HomeButton(
+                  icon: Icons.brush,
+                  label: 'Color',
+                  onTap: () {},
+                ),
+                HomeButton(
+                  icon: Icons.settings,
+                  label: 'Settings',
+                  onTap: () {},
+                ),
+                HomeButton(
+                  icon: Icons.navigate_next,
+                  label: 'Continue',
+                  onTap: () {
+                    if (_choiceController == 'shaker') {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => const ShakerChoiceScreen(),
+                        ),
+                      );
+                    } else {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (ctx) => const FingerTapChoiceScreen(),
+                        ),
+                      );
+                    }
+                  },
+                )
+              ],
+            ),
           ],
         ),
       ),
