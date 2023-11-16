@@ -12,8 +12,9 @@ class FingerTapChoiceScreen extends StatelessWidget {
       indicator: const Circle(),
       indicatorSize: 150,
       child: Scaffold(
+        appBar: AppBar(title: const Text('Finger Chooser')),
+        backgroundColor: Colors.amberAccent,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Column(
               children: [
