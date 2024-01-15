@@ -1,5 +1,5 @@
-import 'package:chooser_ap/widgets/circle.dart';
-import 'package:chooser_ap/widgets/touch_indicator.dart';
+import 'package:chooser_app/widgets/circle.dart';
+import 'package:chooser_app/widgets/touch_indicator.dart';
 import 'package:flutter/material.dart';
 
 class FingerTapChoiceScreen extends StatelessWidget {

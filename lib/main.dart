@@ -1,4 +1,4 @@
-import 'package:chooser_ap/screens/home.dart';
+import 'package:chooser_app/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {

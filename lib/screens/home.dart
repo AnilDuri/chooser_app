@@ -1,5 +1,5 @@
-import 'package:chooser_ap/screens/finger_tap_choice_screen.dart';
-import 'package:chooser_ap/screens/shaker_choice.dart';
+import 'package:chooser_app/screens/finger_tap_choice_screen.dart';
+import 'package:chooser_app/screens/shaker_choice.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
