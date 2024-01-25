@@ -70,110 +70,77 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                HomeButton(
-                  icon: Icons.help,
-                  label: 'Tutorial',
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return BottomSheetContainer(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Text('Modal BottomSheet'),
-                                ElevatedButton(
-                                  child: const Text('Close BottomSheet'),
-                                  onPressed: () => Navigator.pop(context),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                HomeButton(
-                  icon: Icons.brush,
-                  label: 'Color',
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return BottomSheetContainer(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Text('Modal BottomSheet'),
-                                ElevatedButton(
-                                  child: const Text('Close BottomSheet'),
-                                  onPressed: () => Navigator.pop(context),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                HomeButton(
-                  icon: Icons.settings,
-                  label: 'Settings',
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return BottomSheetContainer(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Text('Modal BottomSheet'),
-                                ElevatedButton(
-                                  child: const Text('Close BottomSheet'),
-                                  onPressed: () => Navigator.pop(context),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                HomeButton(
-                  icon: Icons.navigate_next,
-                  label: 'Continue',
-                  onTap: () {
-                    if (_choiceController == 'shaker') {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (ctx) => const ShakerChoiceScreen(),
-                        ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  HomeButton(
+                    icon: Icons.help,
+                    label: 'Tutorial',
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const BottomSheetContainer(
+                            child: SizedBox(),
+                          );
+                        },
                       );
-                    } else {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (ctx) => const FingerTapChoiceScreen(),
-                        ),
+                    },
+                  ),
+                  HomeButton(
+                    icon: Icons.brush,
+                    label: 'Color',
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const BottomSheetContainer(
+                            child: SizedBox(),
+                          );
+                        },
                       );
-                    }
-                  },
-                )
-              ],
+                    },
+                  ),
+                  HomeButton(
+                    icon: Icons.settings,
+                    label: 'Settings',
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const BottomSheetContainer(
+                            child: SizedBox(),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  HomeButton(
+                    icon: Icons.navigate_next,
+                    label: 'Continue',
+                    onTap: () {
+                      if (_choiceController == 'shaker') {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (ctx) => const ShakerChoiceScreen(),
+                          ),
+                        );
+                      } else {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (ctx) => const FingerTapChoiceScreen(),
+                          ),
+                        );
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -201,7 +168,7 @@ class HomeButton extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: 40,
+            size: 30,
             color: Colors.white,
           ),
           const SizedBox(
@@ -231,10 +198,24 @@ class BottomSheetContainer extends StatelessWidget {
     return FractionallySizedBox(
       heightFactor: 0.9,
       child: Container(
+        padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(
             color: Colors.black87,
             borderRadius: BorderRadius.all(Radius.circular(20))),
-        child: child,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  child: const Text('Close'),
+                  onPressed: () => Navigator.pop(context),
+                )
+              ],
+            ),
+            child,
+          ],
+        ),
       ),
     );
   }
