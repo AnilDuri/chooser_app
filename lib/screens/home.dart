@@ -76,17 +76,83 @@ class _HomeState extends State<Home> {
                 HomeButton(
                   icon: Icons.help,
                   label: 'Tutorial',
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return BottomSheetContainer(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const Text('Modal BottomSheet'),
+                                ElevatedButton(
+                                  child: const Text('Close BottomSheet'),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
                 HomeButton(
                   icon: Icons.brush,
                   label: 'Color',
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return BottomSheetContainer(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const Text('Modal BottomSheet'),
+                                ElevatedButton(
+                                  child: const Text('Close BottomSheet'),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
                 HomeButton(
                   icon: Icons.settings,
                   label: 'Settings',
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return BottomSheetContainer(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const Text('Modal BottomSheet'),
+                                ElevatedButton(
+                                  child: const Text('Close BottomSheet'),
+                                  onPressed: () => Navigator.pop(context),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
                 HomeButton(
                   icon: Icons.navigate_next,
@@ -150,6 +216,25 @@ class HomeButton extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class BottomSheetContainer extends StatelessWidget {
+  const BottomSheetContainer({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      heightFactor: 0.9,
+      child: Container(
+        decoration: const BoxDecoration(
+            color: Colors.black87,
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        child: child,
       ),
     );
   }
