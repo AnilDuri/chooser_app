@@ -114,7 +114,18 @@ class _HomeState extends State<Home> {
                         context: context,
                         builder: (BuildContext context) {
                           return const BottomSheetContainer(
-                            child: SizedBox(),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Settings',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 36.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -203,12 +214,13 @@ class BottomSheetContainer extends StatelessWidget {
             color: Colors.black87,
             borderRadius: BorderRadius.all(Radius.circular(20))),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: const Text('Close'),
+                  child: const Text('Done'),
                   onPressed: () => Navigator.pop(context),
                 )
               ],
