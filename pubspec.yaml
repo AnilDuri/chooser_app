@@ -36,6 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   just_audio: ^0.9.35
   shake: ^2.2.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
 
 dev_dependencies:
   flutter_test:
