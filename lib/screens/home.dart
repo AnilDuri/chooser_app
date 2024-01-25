@@ -23,18 +23,18 @@ class _HomeState extends State<Home> {
           children: [
             SizedBox(
               height: height * 0.85,
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Chooser 2.0',
+                  Text(
+                    "Shake 'n Choose",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 46,
                         fontWeight: FontWeight.bold),
                   ),
-                  const Text(
+                  Text(
                     'Your random selector.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -42,31 +42,31 @@ class _HomeState extends State<Home> {
                         fontSize: 30,
                         fontWeight: FontWeight.w300),
                   ),
-                  const SizedBox(height: 20),
-                  DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      value: _choiceController,
-                      items: const [
-                        DropdownMenuItem(
-                            value: 'finger', child: Text('Finger Chooser')),
-                        DropdownMenuItem(
-                            value: 'shaker', child: Text('Shaker Chooser')),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          _choiceController = value!;
-                        });
-                      },
-                      dropdownColor: Colors.amber,
-                      elevation: 0,
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                      style: const TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
+                  SizedBox(height: 20),
+                  // DropdownButtonHideUnderline(
+                  //   child: DropdownButton(
+                  //     value: _choiceController,
+                  //     items: const [
+                  //       DropdownMenuItem(
+                  //           value: 'finger', child: Text('Finger Chooser')),
+                  //       DropdownMenuItem(
+                  //           value: 'shaker', child: Text('Shaker Chooser')),
+                  //     ],
+                  //     onChanged: (value) {
+                  //       setState(() {
+                  //         _choiceController = value!;
+                  //       });
+                  //     },
+                  //     dropdownColor: Colors.amber,
+                  //     elevation: 0,
+                  //     icon: const Icon(
+                  //       Icons.arrow_drop_down,
+                  //       color: Colors.white,
+                  //       size: 40,
+                  //     ),
+                  //     style: const TextStyle(color: Colors.white, fontSize: 16),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
