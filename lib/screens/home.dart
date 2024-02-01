@@ -85,6 +85,7 @@ class _HomeState extends State<Home> {
                         context: context,
                         builder: (BuildContext context) {
                           return const BottomSheetContainer(
+                            header: 'Tutorial',
                             child: SizedBox(),
                           );
                         },
@@ -100,6 +101,7 @@ class _HomeState extends State<Home> {
                         context: context,
                         builder: (BuildContext context) {
                           return const BottomSheetContainer(
+                            header: 'Theme',
                             child: SizedBox(),
                           );
                         },
@@ -115,20 +117,7 @@ class _HomeState extends State<Home> {
                         context: context,
                         builder: (BuildContext context) {
                           return const BottomSheetContainer(
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Settings',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 36.0,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Settings()
-                              ],
-                            ),
-                          );
+                              header: 'Settings', child: Settings());
                         },
                       );
                     },
@@ -202,8 +191,10 @@ class HomeButton extends StatelessWidget {
 }
 
 class BottomSheetContainer extends StatelessWidget {
-  const BottomSheetContainer({super.key, required this.child});
+  const BottomSheetContainer(
+      {super.key, required this.child, required this.header});
 
+  final String header;
   final Widget child;
 
   @override
@@ -226,6 +217,14 @@ class BottomSheetContainer extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                 )
               ],
+            ),
+            Text(
+              header,
+              textAlign: TextAlign.left,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 36.0,
+                  fontWeight: FontWeight.bold),
             ),
             child,
           ],
