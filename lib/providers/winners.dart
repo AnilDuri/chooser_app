@@ -1,5 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final winnersProvider = Provider((ref) {
-  return {'winners': 1};
+class WinnersNotifier extends StateNotifier<int> {
+  WinnersNotifier() : super(1);
+
+  void toggleWinnersStatus(int numberOfWinners) {
+    state = numberOfWinners;
+  }
+}
+
+final winnersProvider = StateNotifierProvider<WinnersNotifier, int>((ref) {
+  return WinnersNotifier();
 });
