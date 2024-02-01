@@ -16,7 +16,7 @@ class _ColorChooserState extends State<ColorChooser> {
       header: const Text(
         'Mono Tones',
         style: TextStyle(
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -30,7 +30,7 @@ class _ColorChooserState extends State<ColorChooser> {
             children: monoToneColorsList
                 .map((item) => Container(
                       margin: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 5),
+                          vertical: 10, horizontal: 8),
                       padding: const EdgeInsets.all(8),
                       width: 140,
                       height: 160,
@@ -39,7 +39,7 @@ class _ColorChooserState extends State<ColorChooser> {
                         item.title,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.w700,
                         ),
                       ),

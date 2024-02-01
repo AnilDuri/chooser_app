@@ -9,6 +9,15 @@ class MonoToneColor {
 
 const List<MonoToneColor> monoToneColorsList = [
   MonoToneColor(
+    'Teal',
+    BoxDecoration(
+      color: Colors.teal,
+      borderRadius: BorderRadius.all(
+        Radius.elliptical(20, 40),
+      ),
+    ),
+  ),
+  MonoToneColor(
     'Amber',
     BoxDecoration(
       color: Colors.amber,
@@ -18,9 +27,9 @@ const List<MonoToneColor> monoToneColorsList = [
     ),
   ),
   MonoToneColor(
-    'Cyan',
+    'BlueGray',
     BoxDecoration(
-      color: Colors.cyan,
+      color: Colors.blueGrey,
       borderRadius: BorderRadius.all(
         Radius.elliptical(20, 40),
       ),
@@ -39,15 +48,6 @@ const List<MonoToneColor> monoToneColorsList = [
     'Light Green',
     BoxDecoration(
       color: Colors.lightGreen,
-      borderRadius: BorderRadius.all(
-        Radius.elliptical(20, 40),
-      ),
-    ),
-  ),
-  MonoToneColor(
-    'Teal',
-    BoxDecoration(
-      color: Colors.teal,
       borderRadius: BorderRadius.all(
         Radius.elliptical(20, 40),
       ),
