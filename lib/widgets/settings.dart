@@ -14,34 +14,70 @@ class _SettingsState extends ConsumerState<Settings> {
   @override
   Widget build(BuildContext context) {
     final winners = ref.watch(winnersProvider);
-    return Column(
+    return CupertinoListSection(
+      backgroundColor: Colors.transparent,
+      header: const Text('GENERAL'),
       children: [
-        CupertinoSlidingSegmentedControl(
-          backgroundColor: Colors.white10,
-          thumbColor: Colors.white54,
-          groupValue: winners,
-          children: const <int, Widget>{
-            1: SegmentSelector(
-              value: '1',
-            ),
-            2: SegmentSelector(
-              value: '2',
-            ),
-            3: SegmentSelector(
-              value: '3',
-            ),
-            4: SegmentSelector(
-              value: '4',
-            ),
-            5: SegmentSelector(
-              value: '5',
-            ),
-          },
-          onValueChanged: (value) {
-            if (value != null) {
-              ref.read(winnersProvider.notifier).toggleWinnersStatus(value);
-            }
-          },
+        CupertinoListTile(
+          backgroundColor: Colors.black87,
+          title: const Text(
+            'Winners',
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: const Icon(
+            Icons.people_alt_outlined,
+            color: Colors.white,
+          ),
+          trailing: CupertinoSlidingSegmentedControl(
+            backgroundColor: Colors.white10,
+            thumbColor: Colors.white54,
+            groupValue: winners,
+            children: const <int, Widget>{
+              1: SegmentSelector(
+                value: '1',
+              ),
+              2: SegmentSelector(
+                value: '2',
+              ),
+              3: SegmentSelector(
+                value: '3',
+              ),
+              4: SegmentSelector(
+                value: '4',
+              ),
+              5: SegmentSelector(
+                value: '5',
+              ),
+            },
+            onValueChanged: (value) {
+              if (value != null) {
+                ref.read(winnersProvider.notifier).toggleWinnersStatus(value);
+              }
+            },
+          ),
+        ),
+        const CupertinoListTile(
+          backgroundColor: Colors.black87,
+          title: Text(
+            'Audio',
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Icon(
+            Icons.volume_down_outlined,
+            color: Colors.white,
+          ),
+          trailing: ,
+        ),
+        const CupertinoListTile(
+          backgroundColor: Colors.black87,
+          title: Text(
+            'Vibrations',
+            style: TextStyle(color: Colors.white),
+          ),
+          leading: Icon(
+            Icons.vibration_outlined,
+            color: Colors.white,
+          ),
         ),
       ],
     );
@@ -55,7 +91,7 @@ class SegmentSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Text(
         value,
         style: const TextStyle(color: CupertinoColors.white),
