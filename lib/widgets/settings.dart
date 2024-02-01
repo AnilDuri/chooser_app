@@ -56,28 +56,29 @@ class _SettingsState extends ConsumerState<Settings> {
             },
           ),
         ),
-        const CupertinoListTile(
+        CupertinoListTile(
           backgroundColor: Colors.black87,
-          title: Text(
+          title: const Text(
             'Audio',
             style: TextStyle(color: Colors.white),
           ),
-          leading: Icon(
+          leading: const Icon(
             Icons.volume_down_outlined,
             color: Colors.white,
           ),
-          trailing: ,
+          trailing: CupertinoSwitch(value: false, onChanged: (value) {}),
         ),
-        const CupertinoListTile(
+        CupertinoListTile(
           backgroundColor: Colors.black87,
-          title: Text(
+          title: const Text(
             'Vibrations',
             style: TextStyle(color: Colors.white),
           ),
-          leading: Icon(
+          leading: const Icon(
             Icons.vibration_outlined,
             color: Colors.white,
           ),
+          trailing: CupertinoSwitch(value: false, onChanged: (value) {}),
         ),
       ],
     );
