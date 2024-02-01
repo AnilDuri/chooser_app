@@ -1,19 +1,21 @@
 import 'dart:math';
 
+import 'package:chooser_app/providers/winners.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shake/shake.dart';
 
-class ShakerChoiceScreen extends StatefulWidget {
+class ShakerChoiceScreen extends ConsumerStatefulWidget {
   const ShakerChoiceScreen({super.key});
 
   @override
-  State<ShakerChoiceScreen> createState() {
+  ConsumerState<ShakerChoiceScreen> createState() {
     return _ShakerChoiceScreen();
   }
 }
 
-class _ShakerChoiceScreen extends State<ShakerChoiceScreen> {
+class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
   final _nameController = TextEditingController();
   final List<String> _names = [];
   late ShakeDetector _detector;
@@ -87,6 +89,9 @@ class _ShakerChoiceScreen extends State<ShakerChoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final winners = ref.watch(winnersProvider);
+    print('winners');
+    print(winners);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shaker'),
