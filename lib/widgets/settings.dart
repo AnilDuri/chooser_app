@@ -15,12 +15,14 @@ class _SettingsState extends ConsumerState<Settings> {
   Widget build(BuildContext context) {
     final winners = ref.watch(winnersProvider);
     return CupertinoListSection(
-      backgroundColor: Colors.transparent,
       header: const Text('GENERAL'),
+      backgroundColor: Colors.transparent,
+      decoration: const BoxDecoration(
+          color: Colors.white10,
+          borderRadius: BorderRadius.all(Radius.circular(10))),
       children: [
         CupertinoListTile(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          backgroundColor: Colors.black87,
+          padding: const EdgeInsets.all(10),
           title: const Text(
             'Winners',
             style: TextStyle(color: Colors.white),
@@ -58,8 +60,7 @@ class _SettingsState extends ConsumerState<Settings> {
           ),
         ),
         CupertinoListTile(
-          backgroundColor: Colors.black87,
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.all(10),
           title: const Text(
             'Audio',
             style: TextStyle(color: Colors.white),
@@ -71,8 +72,7 @@ class _SettingsState extends ConsumerState<Settings> {
           trailing: CupertinoSwitch(value: false, onChanged: (value) {}),
         ),
         CupertinoListTile(
-          backgroundColor: Colors.black87,
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.all(10),
           title: const Text(
             'Vibrations',
             style: TextStyle(color: Colors.white),
