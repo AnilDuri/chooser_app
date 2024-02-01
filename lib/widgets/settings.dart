@@ -21,41 +21,21 @@ class _SettingsState extends ConsumerState<Settings> {
           thumbColor: Colors.white54,
           groupValue: winners,
           children: const <int, Widget>{
-            1: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                '1',
-                style: TextStyle(color: CupertinoColors.white),
-              ),
+            1: SegmentSelector(
+              value: '1',
             ),
-            2: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                '2',
-                style: TextStyle(color: CupertinoColors.white),
-              ),
+            2: SegmentSelector(
+              value: '2',
             ),
-            3: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                '3',
-                style: TextStyle(color: CupertinoColors.white),
-              ),
+            3: SegmentSelector(
+              value: '3',
             ),
-            4: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                '4',
-                style: TextStyle(color: CupertinoColors.white),
-              ),
+            4: SegmentSelector(
+              value: '4',
             ),
-            5: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                '5',
-                style: TextStyle(color: CupertinoColors.white),
-              ),
-            )
+            5: SegmentSelector(
+              value: '5',
+            ),
           },
           onValueChanged: (value) {
             if (value != null) {
@@ -64,6 +44,22 @@ class _SettingsState extends ConsumerState<Settings> {
           },
         ),
       ],
+    );
+  }
+}
+
+class SegmentSelector extends StatelessWidget {
+  const SegmentSelector({super.key, required this.value});
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Text(
+        value,
+        style: const TextStyle(color: CupertinoColors.white),
+      ),
     );
   }
 }
