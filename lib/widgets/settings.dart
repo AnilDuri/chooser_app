@@ -19,6 +19,7 @@ class _SettingsState extends ConsumerState<Settings> {
       header: const Text('GENERAL'),
       children: [
         CupertinoListTile(
+          padding: const EdgeInsets.symmetric(vertical: 10),
           backgroundColor: Colors.black87,
           title: const Text(
             'Winners',
@@ -58,6 +59,7 @@ class _SettingsState extends ConsumerState<Settings> {
         ),
         CupertinoListTile(
           backgroundColor: Colors.black87,
+          padding: const EdgeInsets.symmetric(vertical: 10),
           title: const Text(
             'Audio',
             style: TextStyle(color: Colors.white),
@@ -70,6 +72,7 @@ class _SettingsState extends ConsumerState<Settings> {
         ),
         CupertinoListTile(
           backgroundColor: Colors.black87,
+          padding: const EdgeInsets.symmetric(vertical: 10),
           title: const Text(
             'Vibrations',
             style: TextStyle(color: Colors.white),
