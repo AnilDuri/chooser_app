@@ -16,6 +16,22 @@ class ShakerChoiceScreen extends ConsumerStatefulWidget {
 }
 
 class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final winners = ref.watch(winnersProvider);
+    return ShakerChoiceInner(winners: winners);
+  }
+}
+
+class ShakerChoiceInner extends StatefulWidget {
+  const ShakerChoiceInner({super.key, required this.winners});
+  final int winners;
+
+  @override
+  State<ShakerChoiceInner> createState() => _ShakerChoiceInnerState();
+}
+
+class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
   final _nameController = TextEditingController();
   final List<String> _names = [];
   late ShakeDetector _detector;
@@ -26,12 +42,16 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
     _detector = ShakeDetector.autoStart(
       onPhoneShake: () {
         print('Shaking');
+        if (_names.length < widget.winners) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                  'Please add more people. You need at least ${widget.winners + 1} people!'),
+            ),
+          );
+          return;
+        }
         randomlyRemoveName();
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   const SnackBar(
-        //     content: Text('Shake!'),
-        //   ),
-        // );
         // Do stuff on phone shake
       },
       minimumShakeCount: 2,
@@ -44,7 +64,8 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
   }
 
   void randomlyRemoveName() {
-    if (_names.length == 1) {
+    if (_names.length == widget.winners) {
+      print('These are your winners');
       _detector.stopListening();
       return;
     }
@@ -89,56 +110,56 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final winners = ref.watch(winnersProvider);
-    print('winners');
-    print(winners);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shaker'),
       ),
       backgroundColor: Colors.amberAccent,
       body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Add people to your list and start shaking to see who remains',
-                textAlign: TextAlign.center,
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Add people to your list and start shaking to see who remains',
+              textAlign: TextAlign.center,
+            ),
+            TextField(
+              decoration: const InputDecoration(labelText: 'Name'),
+              controller: _nameController,
+              style:
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: _savePerson,
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  minimumSize: const Size(150, 40)),
+              child: const Text(
+                'Add Person',
+                style: TextStyle(fontSize: 18),
               ),
-              TextField(
-                decoration: const InputDecoration(labelText: 'Name'),
-                controller: _nameController,
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground),
-              ),
-              const SizedBox(height: 12),
-              ElevatedButton(
-                onPressed: _savePerson,
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber,
-                    minimumSize: const Size(150, 40)),
-                child: const Text(
-                  'Add Person',
-                  style: TextStyle(fontSize: 18),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _names.length,
+                itemBuilder: (ctx, index) => ListTile(
+                  title: Text(_names[index]),
+                  trailing: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _names.remove(_names[index]);
+                      });
+                    },
+                    icon: const Icon(Icons.remove_circle_outline),
+                  ),
                 ),
               ),
-              Expanded(
-                child: ListView.builder(
-                    itemCount: _names.length,
-                    itemBuilder: (ctx, index) => ListTile(
-                          title: Text(_names[index]),
-                          trailing: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _names.remove(_names[index]);
-                                });
-                              },
-                              icon: const Icon(Icons.remove_circle_outline)),
-                        )),
-              )
-            ],
-          )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
