@@ -1,25 +1,31 @@
+import 'package:chooser_app/providers/color_choice.dart';
 import 'package:chooser_app/screens/finger_tap_choice_screen.dart';
 import 'package:chooser_app/screens/shaker_choice.dart';
 import 'package:chooser_app/widgets/color_chooser.dart';
 import 'package:chooser_app/widgets/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   var _choiceController = 'shaker';
 
   @override
   Widget build(BuildContext context) {
+    final MaterialColor backgroundColor = ref
+        .watch(colorChoiceProvider)
+        .firstWhere((element) => element.selected)
+        .color;
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
+      backgroundColor: backgroundColor,
       body: Center(
         child: Column(
           children: [
