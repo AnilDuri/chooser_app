@@ -14,15 +14,41 @@ class _ColorChooserState extends State<ColorChooser> {
     return CupertinoListSection(
       header: const Text(
         'Mono Tones',
-        style: TextStyle(fontSize: 16),
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       backgroundColor: Colors.transparent,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(30))),
       children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          width: 70,
-          height: 100,
-          decoration: const BoxDecoration(color: Colors.amberAccent),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                padding: const EdgeInsets.all(8),
+                width: 140,
+                height: 160,
+                decoration: const BoxDecoration(
+                  color: Colors.amberAccent,
+                  borderRadius: BorderRadius.all(
+                    Radius.elliptical(20, 40),
+                  ),
+                ),
+                child: const Text(
+                  'Data',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
         )
       ],
     );
