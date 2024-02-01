@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:chooser_app/providers/color_choice.dart';
 import 'package:chooser_app/providers/winners.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,13 +20,20 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     final winners = ref.watch(winnersProvider);
-    return ShakerChoiceInner(winners: winners);
+    final MaterialColor backgroundColor = ref
+        .watch(colorChoiceProvider)
+        .firstWhere((element) => element.selected)
+        .color;
+    return ShakerChoiceInner(
+        winners: winners, backgroundColor: backgroundColor);
   }
 }
 
 class ShakerChoiceInner extends StatefulWidget {
-  const ShakerChoiceInner({super.key, required this.winners});
+  const ShakerChoiceInner(
+      {super.key, required this.winners, required this.backgroundColor});
   final int winners;
+  final MaterialColor backgroundColor;
 
   @override
   State<ShakerChoiceInner> createState() => _ShakerChoiceInnerState();
@@ -114,7 +122,7 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
       appBar: AppBar(
         title: const Text('Shaker'),
       ),
-      backgroundColor: Colors.amberAccent,
+      backgroundColor: widget.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
