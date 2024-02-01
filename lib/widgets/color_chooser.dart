@@ -22,7 +22,10 @@ class _ColorChooserState extends State<ColorChooser> {
       ),
       backgroundColor: Colors.transparent,
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+        borderRadius: BorderRadius.all(
+          Radius.circular(30),
+        ),
+      ),
       children: [
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -34,7 +37,15 @@ class _ColorChooserState extends State<ColorChooser> {
                       padding: const EdgeInsets.all(8),
                       width: 140,
                       height: 160,
-                      decoration: item.decoration,
+                      decoration: BoxDecoration(
+                        color: item.color,
+                        border: item.selected
+                            ? Border.all(width: 3, color: Colors.white)
+                            : null,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
                       child: Text(
                         item.title,
                         style: const TextStyle(
