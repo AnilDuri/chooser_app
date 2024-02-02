@@ -212,7 +212,7 @@ class BottomSheetContainer extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(
             color: Colors.black87,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: BorderRadius.all(Radius.circular(27))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
