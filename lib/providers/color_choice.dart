@@ -2,8 +2,8 @@ import 'package:chooser_app/constants/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ColorChoiceNotifier extends StateNotifier<List<MonoToneColor>> {
-  ColorChoiceNotifier() : super(monoToneColorsList);
+class ColorChoiceNotifier extends StateNotifier<List> {
+  ColorChoiceNotifier() : super(colorsList);
 
   void toggleColorChoice(MaterialColor color) {
     state = state
@@ -14,6 +14,6 @@ class ColorChoiceNotifier extends StateNotifier<List<MonoToneColor>> {
 }
 
 final colorChoiceProvider =
-    StateNotifierProvider<ColorChoiceNotifier, List<MonoToneColor>>((ref) {
+    StateNotifierProvider<ColorChoiceNotifier, List>((ref) {
   return ColorChoiceNotifier();
 });
