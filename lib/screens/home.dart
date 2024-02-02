@@ -1,3 +1,4 @@
+import 'package:chooser_app/constants/colors.dart';
 import 'package:chooser_app/providers/color_choice.dart';
 import 'package:chooser_app/screens/finger_tap_choice_screen.dart';
 import 'package:chooser_app/screens/shaker_choice.dart';
@@ -18,14 +19,13 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialColor backgroundColor = ref
-        .watch(colorChoiceProvider)
-        .firstWhere((element) => element.selected)
-        .color;
+    final String selected = ref.watch(colorChoiceProvider);
+    final color =
+        combinedColoredList.firstWhere((element) => element.id == selected);
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: color.color,
       body: Center(
         child: Column(
           children: [

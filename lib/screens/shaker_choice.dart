@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:chooser_app/constants/colors.dart';
 import 'package:chooser_app/providers/color_choice.dart';
 import 'package:chooser_app/providers/winners.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,11 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     final winners = ref.watch(winnersProvider);
-    final MaterialColor backgroundColor = ref
-        .watch(colorChoiceProvider)
-        .firstWhere((element) => element.selected)
-        .color;
-    return ShakerChoiceInner(
-        winners: winners, backgroundColor: backgroundColor);
+    final String selected = ref.watch(colorChoiceProvider);
+    final color =
+        combinedColoredList.firstWhere((element) => element.id == selected);
+
+    return ShakerChoiceInner(winners: winners, backgroundColor: color.color);
   }
 }
 

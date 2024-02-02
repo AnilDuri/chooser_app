@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:chooser_app/constants/colors.dart';
 import 'package:chooser_app/providers/color_choice.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,8 @@ class ColorChooser extends ConsumerStatefulWidget {
 class _ColorChooserState extends ConsumerState<ColorChooser> {
   @override
   Widget build(BuildContext context) {
-    final colorsList = ref.watch(colorChoiceProvider);
+    final selectedColorId = ref.watch(colorChoiceProvider);
+
     return Column(
       children: [
         CupertinoListSection(
@@ -36,12 +36,12 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: colorsList
+                children: monoToneColorsList
                     .map((item) => GestureDetector(
                           onTap: () {
                             ref
                                 .read(colorChoiceProvider.notifier)
-                                .toggleColorChoice(item.color);
+                                .toggleColorChoice(item.id);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -51,7 +51,7 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                             height: 160,
                             decoration: BoxDecoration(
                               color: item.color,
-                              border: item.selected
+                              border: item.id == selectedColorId
                                   ? Border.all(width: 3, color: Colors.white)
                                   : null,
                               borderRadius: const BorderRadius.all(
@@ -91,12 +91,12 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: colorsList
+                children: gradientColors
                     .map((item) => GestureDetector(
                           onTap: () {
                             ref
                                 .read(colorChoiceProvider.notifier)
-                                .toggleColorChoice(item.color);
+                                .toggleColorChoice(item.id);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -105,12 +105,11 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                             width: 140,
                             height: 160,
                             decoration: BoxDecoration(
-                              gradient: const LinearGradient(
+                              gradient: LinearGradient(
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
-                                  colors: [Colors.green, Colors.greenAccent]),
-                              color: item.color,
-                              border: item.selected
+                                  colors: item.color),
+                              border: item.id == selectedColorId
                                   ? Border.all(width: 3, color: Colors.white)
                                   : null,
                               borderRadius: const BorderRadius.all(

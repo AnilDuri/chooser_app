@@ -4,34 +4,51 @@ import 'package:uuid/uuid.dart';
 const uuid = Uuid();
 
 class MonoToneColor {
-  MonoToneColor(this.title, this.color, this.selected) : id = uuid.v4();
+  MonoToneColor({required this.title, required this.color, String? id})
+      : id = id ?? uuid.v4();
 
   final String id;
   final String title;
   final MaterialColor color;
-  final bool selected;
   final String type = 'Monotone';
 }
 
 class GradientColors {
-  GradientColors(this.title, this.color, this.selected) : id = uuid.v4();
+  GradientColors(this.title, this.color) : id = uuid.v4();
 
   final String id;
   final String title;
   final List<MaterialColor> color;
-  final bool selected;
+
   final String type = 'Gradient';
 }
 
-List colorsList = [
-  MonoToneColor('Teal', Colors.teal, true),
-  MonoToneColor('Amber', Colors.amber, false),
-  MonoToneColor('BlueGray', Colors.blueGrey, false),
-  MonoToneColor('Purple', Colors.purple, false),
-  MonoToneColor('Light Green', Colors.lightGreen, false),
-  GradientColors('Teal', [Colors.teal, Colors.lightBlue], false),
-  GradientColors('Amber', [Colors.amber, Colors.orange], false),
-  GradientColors('BlueGray', [Colors.blueGrey, Colors.grey], false),
-  GradientColors('Purple', [Colors.purple, Colors.indigo], false),
-  GradientColors('Light Green', [Colors.green, Colors.lightGreen], false),
+List<MonoToneColor> monoToneColorsList = [
+  MonoToneColor(title: 'Teal', color: Colors.teal, id: 'initialColor'),
+  MonoToneColor(
+    title: 'Amber',
+    color: Colors.amber,
+  ),
+  MonoToneColor(
+    title: 'BlueGray',
+    color: Colors.blueGrey,
+  ),
+  MonoToneColor(
+    title: 'Purple',
+    color: Colors.purple,
+  ),
+  MonoToneColor(
+    title: 'Light Green',
+    color: Colors.lightGreen,
+  ),
 ];
+
+List<GradientColors> gradientColors = [
+  GradientColors('Teal', [Colors.teal, Colors.lightBlue]),
+  GradientColors('Amber', [Colors.amber, Colors.orange]),
+  GradientColors('BlueGray', [Colors.blueGrey, Colors.grey]),
+  GradientColors('Purple', [Colors.purple, Colors.indigo]),
+  GradientColors('Light Green', [Colors.green, Colors.lightGreen]),
+];
+
+List combinedColoredList = [...monoToneColorsList, gradientColors];
