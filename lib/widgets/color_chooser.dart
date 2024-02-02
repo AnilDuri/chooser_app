@@ -14,7 +14,7 @@ class ColorChooser extends ConsumerStatefulWidget {
 class _ColorChooserState extends ConsumerState<ColorChooser> {
   @override
   Widget build(BuildContext context) {
-    final selectedColorId = ref.watch(colorChoiceProvider);
+    final selectedColor = ref.watch(colorChoiceProvider);
 
     return Column(
       children: [
@@ -41,7 +41,8 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                           onTap: () {
                             ref
                                 .read(colorChoiceProvider.notifier)
-                                .toggleColorChoice(item.id);
+                                .toggleColorChoice(ColorState(
+                                    id: item.id, type: ColorType.solid));
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -51,7 +52,7 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                             height: 160,
                             decoration: BoxDecoration(
                               color: item.color,
-                              border: item.id == selectedColorId
+                              border: item.id == selectedColor.id
                                   ? Border.all(width: 3, color: Colors.white)
                                   : null,
                               borderRadius: const BorderRadius.all(
@@ -96,7 +97,8 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                           onTap: () {
                             ref
                                 .read(colorChoiceProvider.notifier)
-                                .toggleColorChoice(item.id);
+                                .toggleColorChoice(ColorState(
+                                    id: item.id, type: ColorType.gradient));
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -109,7 +111,7 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   colors: item.color),
-                              border: item.id == selectedColorId
+                              border: item.id == selectedColor.id
                                   ? Border.all(width: 3, color: Colors.white)
                                   : null,
                               borderRadius: const BorderRadius.all(

@@ -3,6 +3,8 @@ import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
 
+enum ColorType { gradient, solid }
+
 class MonoToneColor {
   MonoToneColor({required this.title, required this.color, String? id})
       : id = id ?? uuid.v4();
@@ -10,7 +12,7 @@ class MonoToneColor {
   final String id;
   final String title;
   final MaterialColor color;
-  final String type = 'Monotone';
+  final ColorType type = ColorType.solid;
 }
 
 class GradientColors {
@@ -19,8 +21,7 @@ class GradientColors {
   final String id;
   final String title;
   final List<MaterialColor> color;
-
-  final String type = 'Gradient';
+  final ColorType type = ColorType.gradient;
 }
 
 List<MonoToneColor> monoToneColorsList = [

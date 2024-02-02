@@ -21,7 +21,7 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     final winners = ref.watch(winnersProvider);
-    final String selected = ref.watch(colorChoiceProvider);
+    final ColorState selected = ref.watch(colorChoiceProvider);
     final color =
         combinedColoredList.firstWhere((element) => element.id == selected);
 
