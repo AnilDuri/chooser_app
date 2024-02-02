@@ -120,7 +120,8 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shaker'),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
       ),
       backgroundColor: widget.backgroundColor,
       body: Padding(
@@ -128,10 +129,6 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Add people to your list and start shaking to see who remains',
-              textAlign: TextAlign.center,
-            ),
             TextField(
               decoration: const InputDecoration(labelText: 'Name'),
               controller: _nameController,
