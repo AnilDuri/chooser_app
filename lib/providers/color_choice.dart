@@ -1,23 +1,25 @@
-import 'package:chooser_app/constants/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class ColorState {
-  ColorState({required this.id, required this.type});
+final sharedPrefs = FutureProvider<SharedPreferences>(
+    (_) async => await SharedPreferences.getInstance());
 
-  final String id;
-  final ColorType type;
-}
+class ColorChoiceNotifier extends StateNotifier<String> {
+  ColorChoiceNotifier(this.pref) : super(pref?.getString('color_id') ?? '1');
 
-class ColorChoiceNotifier extends StateNotifier<ColorState> {
-  ColorChoiceNotifier()
-      : super(ColorState(id: 'initialColor', type: ColorType.solid));
+  final SharedPreferences? pref;
 
-  void toggleColorChoice(ColorState colorState) {
-    state = colorState;
+  void toggleColorChoice(String id) {
+    state = id;
+    pref!.setString('color_id', id);
   }
 }
 
 final colorChoiceProvider =
-    StateNotifierProvider<ColorChoiceNotifier, ColorState>((ref) {
-  return ColorChoiceNotifier();
+    StateNotifierProvider<ColorChoiceNotifier, String>((ref) {
+  final pref = ref.watch(sharedPrefs).maybeWhen(
+        data: (value) => value,
+        orElse: () => null,
+      );
+  return ColorChoiceNotifier(pref);
 });

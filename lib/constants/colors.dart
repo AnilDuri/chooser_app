@@ -1,55 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
-
-const uuid = Uuid();
-
-enum ColorType { gradient, solid }
-
-class MonoToneColor {
-  MonoToneColor({required this.title, required this.color, String? id})
-      : id = id ?? uuid.v4();
-
-  final String id;
-  final String title;
-  final MaterialColor color;
-  final ColorType type = ColorType.solid;
-}
 
 class GradientColors {
-  GradientColors(this.title, this.color) : id = uuid.v4();
+  GradientColors({
+    required this.id,
+    required this.title,
+    required this.color,
+  });
 
   final String id;
   final String title;
   final List<MaterialColor> color;
-  final ColorType type = ColorType.gradient;
 }
 
-List<MonoToneColor> monoToneColorsList = [
-  MonoToneColor(title: 'Teal', color: Colors.teal, id: 'initialColor'),
-  MonoToneColor(
+List<GradientColors> monoToneColorsList = [
+  GradientColors(
+    id: '1',
     title: 'Amber',
-    color: Colors.amber,
+    color: [Colors.amber, Colors.amber],
   ),
-  MonoToneColor(
+  GradientColors(
+    id: '2',
     title: 'BlueGray',
-    color: Colors.blueGrey,
+    color: [Colors.blueGrey, Colors.blueGrey],
   ),
-  MonoToneColor(
+  GradientColors(
+    id: '3',
     title: 'Purple',
-    color: Colors.purple,
+    color: [Colors.purple, Colors.purple],
   ),
-  MonoToneColor(
+  GradientColors(
+    id: '4',
     title: 'Light Green',
-    color: Colors.lightGreen,
+    color: [Colors.lightGreen, Colors.lightGreen],
+  ),
+  GradientColors(
+    id: '5',
+    title: 'Teal',
+    color: [Colors.teal, Colors.teal],
   ),
 ];
 
-List<GradientColors> gradientColors = [
-  GradientColors('Teal', [Colors.teal, Colors.lightBlue]),
-  GradientColors('Amber', [Colors.amber, Colors.orange]),
-  GradientColors('BlueGray', [Colors.blueGrey, Colors.grey]),
-  GradientColors('Purple', [Colors.purple, Colors.indigo]),
-  GradientColors('Light Green', [Colors.green, Colors.lightGreen]),
+List<GradientColors> gradientColorsList = [
+  GradientColors(
+      id: '1G', title: 'Teal', color: [Colors.teal, Colors.lightBlue]),
+  GradientColors(
+      id: '2G', title: 'Amber', color: [Colors.amber, Colors.orange]),
+  GradientColors(
+      id: '3G', title: 'BlueGray', color: [Colors.blueGrey, Colors.grey]),
+  GradientColors(
+      id: '4G', title: 'Purple', color: [Colors.purple, Colors.indigo]),
+  GradientColors(
+      id: '5G', title: 'Light Green', color: [Colors.green, Colors.lightGreen]),
 ];
 
-List combinedColoredList = [...monoToneColorsList, gradientColors];
+List<GradientColors> combinedColors = [
+  ...monoToneColorsList,
+  ...gradientColorsList
+];

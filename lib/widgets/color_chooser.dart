@@ -41,8 +41,7 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                           onTap: () {
                             ref
                                 .read(colorChoiceProvider.notifier)
-                                .toggleColorChoice(ColorState(
-                                    id: item.id, type: ColorType.solid));
+                                .toggleColorChoice(item.id);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -51,8 +50,11 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                             width: 140,
                             height: 160,
                             decoration: BoxDecoration(
-                              color: item.color,
-                              border: item.id == selectedColor.id
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: item.color),
+                              border: item.id == selectedColor
                                   ? Border.all(width: 3, color: Colors.white)
                                   : null,
                               borderRadius: const BorderRadius.all(
@@ -92,13 +94,12 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: gradientColors
+                children: gradientColorsList
                     .map((item) => GestureDetector(
                           onTap: () {
                             ref
                                 .read(colorChoiceProvider.notifier)
-                                .toggleColorChoice(ColorState(
-                                    id: item.id, type: ColorType.gradient));
+                                .toggleColorChoice(item.id);
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
@@ -111,7 +112,7 @@ class _ColorChooserState extends ConsumerState<ColorChooser> {
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   colors: item.color),
-                              border: item.id == selectedColor.id
+                              border: item.id == selectedColor
                                   ? Border.all(width: 3, color: Colors.white)
                                   : null,
                               borderRadius: const BorderRadius.all(

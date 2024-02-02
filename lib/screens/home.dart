@@ -17,31 +17,17 @@ class Home extends ConsumerStatefulWidget {
 class _HomeState extends ConsumerState<Home> {
   var _choiceController = 'shaker';
 
-  _findColor(ColorState selected) {
-    if (selected.type == ColorType.solid) {
-      return monoToneColorsList
-          .firstWhere((element) => element.id == selected.id)
-          .color;
-    }
-    if (selected.type == ColorType.gradient) {
-      return gradientColors
-          .firstWhere((element) => element.id == selected.id)
-          .color;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final ColorState selected = ref.watch(colorChoiceProvider);
-    final colors = _findColor(selected);
+    final String selected = ref.watch(colorChoiceProvider);
+    final colors =
+        combinedColors.firstWhere((element) => element.id == selected);
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: selected.type == ColorType.solid
-                    ? [colors, colors]
-                    : colors,
+                colors: colors.color,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)),
         child: Center(

@@ -21,19 +21,19 @@ class _ShakerChoiceScreen extends ConsumerState<ShakerChoiceScreen> {
   @override
   Widget build(BuildContext context) {
     final winners = ref.watch(winnersProvider);
-    final ColorState selected = ref.watch(colorChoiceProvider);
+    final String selected = ref.watch(colorChoiceProvider);
     final color =
-        combinedColoredList.firstWhere((element) => element.id == selected);
+        combinedColors.firstWhere((element) => element.id == selected);
 
-    return ShakerChoiceInner(winners: winners, backgroundColor: color.color);
+    return ShakerChoiceInner(winners: winners, colors: color.color);
   }
 }
 
 class ShakerChoiceInner extends StatefulWidget {
   const ShakerChoiceInner(
-      {super.key, required this.winners, required this.backgroundColor});
+      {super.key, required this.winners, required this.colors});
   final int winners;
-  final MaterialColor backgroundColor;
+  final List<MaterialColor> colors;
 
   @override
   State<ShakerChoiceInner> createState() => _ShakerChoiceInnerState();
@@ -123,9 +123,13 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
       ),
-      backgroundColor: widget.backgroundColor,
-      body: Padding(
+      body: Container(
         padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: widget.colors,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
