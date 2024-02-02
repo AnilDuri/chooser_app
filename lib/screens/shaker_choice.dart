@@ -119,6 +119,7 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
@@ -133,6 +134,9 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 100,
+            ),
             TextField(
               decoration: const InputDecoration(labelText: 'Name'),
               controller: _nameController,
