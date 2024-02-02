@@ -53,6 +53,7 @@ class _SettingsState extends ConsumerState<Settings> {
               ),
             },
             onValueChanged: (value) {
+              print(value);
               if (value != null) {
                 ref.read(winnersProvider.notifier).toggleWinnersStatus(value);
               }
