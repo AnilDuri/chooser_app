@@ -40,9 +40,10 @@ class ShakerChoiceInner extends StatefulWidget {
 }
 
 class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
-  final _nameController = TextEditingController();
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   final List<String> _names = [];
   late ShakeDetector _detector;
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   void initState() {
@@ -77,14 +78,22 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
       _detector.stopListening();
       return;
     }
+
+    //remove random name
     var rand = Random();
     int i = rand.nextInt(_names.length);
-
-//remove the random string
-    setState(() {
-      _names.removeAt(i);
-    });
+    removeName(i);
     HapticFeedback.heavyImpact();
+  }
+
+  void removeName(int index) {
+    final removedItem = _names[index];
+
+    setState(() {
+      _names.removeAt(index);
+    });
+    _listKey.currentState?.removeItem(
+        index, (ctx, animation) => buildItem(removedItem, animation));
   }
 
   @override
@@ -112,8 +121,21 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
     setState(() {
       _names.add(_nameController.text);
     });
-
+    _listKey.currentState?.insertItem(_names.length - 1);
     _nameController.clear();
+  }
+
+  Widget buildItem(String name, Animation<double> animation) {
+    return SizeTransition(
+      sizeFactor: animation,
+      child: ListTile(
+        title: Text(name),
+        trailing: IconButton(
+          onPressed: () => removeName(_names.indexOf(name)),
+          icon: const Icon(Icons.remove_circle_outline),
+        ),
+      ),
+    );
   }
 
   @override
@@ -155,19 +177,11 @@ class _ShakerChoiceInnerState extends State<ShakerChoiceInner> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: _names.length,
-                itemBuilder: (ctx, index) => ListTile(
-                  title: Text(_names[index]),
-                  trailing: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _names.remove(_names[index]);
-                      });
-                    },
-                    icon: const Icon(Icons.remove_circle_outline),
-                  ),
-                ),
+              child: AnimatedList(
+                key: _listKey,
+                initialItemCount: _names.length,
+                itemBuilder: (ctx, index, animation) =>
+                    buildItem(_names[index], animation),
               ),
             )
           ],
